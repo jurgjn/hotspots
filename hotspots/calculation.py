@@ -940,7 +940,10 @@ class Runner(object):
 
         probes = self.sampler.sample(mol, probe=probe)
 
-        print(len(probes))
+        if not (probes is None):
+            print(len(probes))
+        else:
+            print("No gridpoints are above the score threshold")
 
         for pg in self.sampler.probe_grids:
             if pg.name.lower() == probe:
@@ -998,7 +1001,7 @@ class Runner(object):
 
         self.weighted_grids = self._get_weighted_maps()
 
-        print("Buriedness calcualtion complete\n")
+        print("Buriedness calculation complete\n")
 
         print("Start sampling")
         grid_dict = {w.identifier: w.grid for w in self.weighted_grids}
